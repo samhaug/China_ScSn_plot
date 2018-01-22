@@ -6,7 +6,7 @@
 File Name : reflection_points.py
 Purpose : Plot ScS reflection points
 Creation Date : 19-01-2018
-Last Modified : Mon 22 Jan 2018 11:39:52 AM EST
+Last Modified : Mon 22 Jan 2018 05:12:13 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -33,8 +33,10 @@ def main():
     f = h5py.File(args.ref_points,'r')
 
     fig = plt.figure(figsize=(10,10))
-    m = Basemap(llcrnrlon=70,llcrnrlat=-20,urcrnrlon=170,
-            urcrnrlat=60,projection='mill')
+    #m = Basemap(llcrnrlon=70,llcrnrlat=-20,urcrnrlon=170,
+    #        urcrnrlat=60,projection='mill')
+    m = Basemap(llcrnrlon=75,llcrnrlat=10,urcrnrlon=150,
+            urcrnrlat=50,projection='mill')
     m.drawcoastlines(linewidth=1.2)
 
     plot_reverb(f,args,m)
