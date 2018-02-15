@@ -6,7 +6,7 @@
 File Name : reflection_points.py
 Purpose : Plot ScS reflection points
 Creation Date : 19-01-2018
-Last Modified : Thu 25 Jan 2018 12:15:50 PM EST
+Last Modified : Wed 14 Feb 2018 01:26:26 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -35,6 +35,8 @@ def main():
     fig = plt.figure(figsize=(10,10))
     #m = Basemap(llcrnrlon=70,llcrnrlat=-20,urcrnrlon=170,
     #        urcrnrlat=60,projection='mill')
+    #m = Basemap(llcrnrlon=80,llcrnrlat=-10,urcrnrlon=150,
+    #        urcrnrlat=50,projection='mill')
     m = Basemap(llcrnrlon=80,llcrnrlat=-10,urcrnrlon=150,
             urcrnrlat=50,projection='mill')
     m.drawcoastlines(linewidth=1.2)

@@ -6,7 +6,7 @@
 File Name : slice_grid.py
 Purpose : plot a slice of a CRP grid between two coordinates
 Creation Date : 25-01-2018
-Last Modified : Tue 30 Jan 2018 02:33:07 PM EST
+Last Modified : Tue 30 Jan 2018 03:05:52 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -35,7 +35,7 @@ def main():
     latspace = np.linspace(lat_1,lat_2,num=100)
     lonspace = np.linspace(lon_1,lon_2,num=100)
     #hspace = g['h'][:]
-    hspace = np.linspace(200,700,num=500)
+    hspace = np.linspace(200,800,num=600)
     hgrid_one,latgrid_one = np.meshgrid(hspace,latspace)
     hgrid_one,longrid_one = np.meshgrid(hspace,lonspace)
     hgrid = np.transpose([np.ravel(hgrid_one)])
@@ -64,7 +64,7 @@ def main():
     int3d = RegularGridInterpolator((lon,lat,h),grid)
     cross_section = int3d(coords)
     cross_section = np.reshape(cross_section,hgrid_one.shape).T
-    plt.imshow(cross_section,aspect='auto',extent=[0,1,700,200])
+    plt.imshow(cross_section,aspect='auto',extent=[0,1,800,200])
     plt.show()
 
 
