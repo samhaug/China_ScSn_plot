@@ -6,7 +6,7 @@
 File Name : mean_wiggle.py
 Purpose : plot vertical wiggles
 Creation Date : 17-02-2018
-Last Modified : Sat 17 Feb 2018 04:11:06 PM EST
+Last Modified : Sat 17 Feb 2018 04:16:45 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -27,9 +27,10 @@ def main():
     fig,ax = setup_figure()
     data = h5py.File(args.data,'r',driver='core')
     synth = h5py.File(args.synth,'r',driver='core')
-    get_wiggles(synth,ax,axes=0,color='r')
-    get_wiggles(data,ax,axes=0,color='k',alpha=0.7)
+    #get_wiggles(synth,ax,axes=1,color='r')
+    get_wiggles(data,ax,axes=1,color='k',alpha=0.7)
     ax.set_ylim(data['h'][:].max(),data['h'][:].min())
+    plt.tight_layout()
     plt.show()
     data.close()
     synth.close()
@@ -46,7 +47,7 @@ def get_wiggles(f,ax,axes=1,color='k',alpha=0.5,zorder=0):
                         facecolor=color,lw=0.5,alpha=alpha)
 
 def setup_figure():
-    fig,ax = plt.subplots(figsize=(8,5))
+    fig,ax = plt.subplots(figsize=(18,8))
     return fig,ax
 
 
