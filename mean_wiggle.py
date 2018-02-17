@@ -6,7 +6,7 @@
 File Name : mean_wiggle.py
 Purpose : plot vertical wiggles
 Creation Date : 17-02-2018
-Last Modified : Sat 17 Feb 2018 01:42:55 PM EST
+Last Modified : Sat 17 Feb 2018 03:39:56 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -45,10 +45,10 @@ def get_wiggles(f,ax,axes=1,color='k',alpha=0.5,zorder=0):
         ax.fill_betweenx(h,wiggle+idx,idx,
                         facecolor=color,lw=0.5,alpha=alpha)
 
-
 def setup_figure():
     fig,ax = plt.subplots(figsize=(8,5))
     return fig,ax
 
 
 main()
+
