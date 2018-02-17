@@ -6,7 +6,7 @@
 File Name : mean_wiggle.py
 Purpose : plot vertical wiggles
 Creation Date : 17-02-2018
-Last Modified : Sat 17 Feb 2018 03:39:56 PM EST
+Last Modified : Sat 17 Feb 2018 04:11:06 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
