@@ -8,7 +8,7 @@ gmtset FONT_ANNOT_PRIMARY=8
 gmtset FONT_ANNOT_SECONDARY=8
 
 #plot events
-psbasemap -Y5i -R$region -J$scale -B10g0.5 -K -P > $file.ps
+psbasemap -Y5i -R$region -J$scale -B10 -K -P > $file.ps
 pscoast -R$region -J$scale -Wthin,black -N1/thick,black -N2/thin,black \
 	-Slightblue -Di -K -O -P >> $file.ps
 
