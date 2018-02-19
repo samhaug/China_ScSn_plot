@@ -1,6 +1,6 @@
 #!/bin/bash
 region=80/150/-10/50 
-scale=m0.05i
+scale=m0.1i
 file=beachball_map
 gmtset FONT_LABEL=8
 gmtset FONT_TITLE=8
