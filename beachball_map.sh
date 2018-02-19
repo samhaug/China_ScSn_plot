@@ -1,7 +1,5 @@
 #!/bin/bash
-region=242/257/40/49
-region=246/253/42/47
-#region=-107/-114/41/48
+region=80/150/-10/50 
 scale=m0.4i
 file=beachball_map
 gmtset LABEL_FONT_SIZE=8
