@@ -1,6 +1,6 @@
 #!/bin/bash
 region=80/150/-10/50 
-scale=m0.4i
+scale=m0.1i
 file=beachball_map
 gmtset LABEL_FONT_SIZE=8
 gmtset HEADER_FONT_SIZE=8
@@ -13,12 +13,12 @@ minlat=42.0
 maxlat=47.0
 
 #plot events
-psbasemap -Y5i -R$region -J$scale -Ba2/a2/WSne -K -P > $file.ps
+psbasemap -Y5i -R$region -J$scale -B10g0.5 -K -P > $file.ps
 pscoast -R$region -J$scale -A10 -Wthin,black -N1/thick,black -N2/thin,black \
 	-Slightblue -Di -K -O -P >> $file.ps
 
 while read lat lon H mrr mtt mpp mrt mrp mtp e lon lat; do
-psmeca -R -J -Sm0.4 -K -O << END >> $file.ps
+psmeca -R$region -J -Sm0.4 -K -O << END >> $file.ps
 lon lat dep stk dip rake mag
 $lon $lat $H $mrr $mtt $mpp $mrt $mrp $mrp $e $lon $lat
 END
