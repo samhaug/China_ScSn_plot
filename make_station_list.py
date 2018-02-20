@@ -6,7 +6,7 @@
 File Name : make_beachball_list.py
 Purpose : make file for gmt psmeca to read and plot beachballs on map
 Creation Date : 19-02-2018
-Last Modified : Tue 20 Feb 2018 12:01:55 PM EST
+Last Modified : Tue 20 Feb 2018 12:08:46 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -31,4 +31,5 @@ def main():
             string = '{} {}'.format(tr.stats.stlo,tr.stats.stla)
             outfile.write(string+'\n')
     outfile.close()
+
 main()
