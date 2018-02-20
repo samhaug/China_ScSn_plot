@@ -2,8 +2,8 @@
 BEGIN GMT 5.4.2
 B	10
 J	m
-Jm	m0.1i
-R	70/180/-30/60
+Jm	m0.05i
+R	70/200/-30/60
 Y	5i
-L	14
+L	13
 END
