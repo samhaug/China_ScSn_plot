@@ -2,9 +2,9 @@
 boxregion=80/150/-10/50 
 region=70/180/-30/60 
 #scale=m0.08i
-scale=m0.05i
-file=single_beachball_map
-beach_file=single_datfiles/beachballs.dat
+scale=m0.06i
+file=beachball_map
+beach_file=datfiles/beachballs.dat
 #gmtset FONT_LABEL=8
 #gmtset FONT_TITLE=8
 #gmtset FONT_ANNOT_PRIMARY=8
