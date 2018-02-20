@@ -3,8 +3,8 @@ boxregion=80/150/-10/50
 region=70/180/-30/60 
 #scale=m0.08i
 scale=m0.05i
-file=beachball_map
-beach_file=datfiles/beachballs.dat
+file=single_beachball_map
+beach_file=single_datfiles/beachballs.dat
 #gmtset FONT_LABEL=8
 #gmtset FONT_TITLE=8
 #gmtset FONT_ANNOT_PRIMARY=8
@@ -14,6 +14,7 @@ beach_file=datfiles/beachballs.dat
 #psbasemap -R$region -J$scale -B10 -K -D$boxregion -F > $file.ps
 #pscoast -R$region -J$scale -B10 -Slightblue -Gwhite -K  > $file.ps
 pscoast -R$region -J$scale -B10 -S#27A2B5 -G#B53A27 -K  > $file.ps
+#pscoast -R$region -J$scale -B10 -Swhite -Glightgrey -K  > $file.ps
 
 while read lat lon H mrr mtt mpp mrt mrp mtp e lon lat; do
 psmeca -R$region -J$scale -Sm0.2i -K -O << END >> $file.ps
