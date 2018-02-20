@@ -29,4 +29,5 @@ END
 done < one_beachball.dat
 
 ps2pdf $file.ps
+convert -density 150 $file.pdf -quality 90 $file.png
 rm $file.ps
