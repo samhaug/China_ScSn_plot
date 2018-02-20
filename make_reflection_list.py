@@ -6,7 +6,7 @@
 File Name : make_reflection_list.py
 Purpose : make ascii files of reflection points for psxy
 Creation Date : 19-02-2018
-Last Modified : Tue 20 Feb 2018 11:08:55 AM EST
+Last Modified : Tue 20 Feb 2018 12:36:41 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -55,8 +55,45 @@ def reflection_points(fname):
     coord = []
     for ikeys in f:
         for phase in f[ikeys]:
-            if not phase.startswith('c'):
+            if phase == 'ScSScS':
                 hkey = f[ikeys][phase].keys()[118]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+            if phase == 'ScSScSScS':
+                hkey = f[ikeys][phase].keys()[118]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+                hkey = f[ikeys][phase].keys()[289]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+            if phase == 'sScS':
+                hkey = f[ikeys][phase].keys()[118]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+                hkey = f[ikeys][phase].keys()[289]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+            if phase == 'sScSScS':
+                hkey = f[ikeys][phase].keys()[118]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+                hkey = f[ikeys][phase].keys()[289]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+                hkey = f[ikeys][phase].keys()[460]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+            if phase == 'sScSScSScS':
+                hkey = f[ikeys][phase].keys()[118]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+                hkey = f[ikeys][phase].keys()[289]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+                hkey = f[ikeys][phase].keys()[460]
+                phase_names.append(phase)
+                coord.append(f[ikeys][phase][hkey][:])
+                hkey = f[ikeys][phase].keys()[631]
                 phase_names.append(phase)
                 coord.append(f[ikeys][phase][hkey][:])
     return phase_names,coord
