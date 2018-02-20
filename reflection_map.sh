@@ -20,5 +20,8 @@ $lon $lat $H $mrr $mtt $mpp $mrt $mrp $mrp $e $lon $lat
 END
 done < beachballs.dat
 
+gmt psxy ScS.dat R$region -J$scale -Sc0.25c -Gred -K -O >> $file.ps
+
+
 ps2pdf $file.ps
 rm $file.ps

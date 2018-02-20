@@ -6,7 +6,7 @@
 File Name : make_reflection_list.py
 Purpose : make ascii files of reflection points for psxy
 Creation Date : 19-02-2018
-Last Modified : Tue 20 Feb 2018 10:47:57 AM EST
+Last Modified : Tue 20 Feb 2018 10:51:32 AM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -24,11 +24,11 @@ def main():
                        help='comma delimited list of direcories')
     args = parser.parse_args()
     dir_list = args.dir_list.split(',')
-    ScS2 = file('ScS2','w')
-    ScS3 = file('ScS3','w')
-    sScS = file('sScS','w')
-    sScS2 = file('sScS2','w')
-    sScS3 = file('sScS3','w')
+    ScS2 = file('ScS2.dat','w')
+    ScS3 = file('ScS3.dat','w')
+    sScS = file('sScS.dat','w')
+    sScS2 = file('sScS2.dat','w')
+    sScS3 = file('sScS3.dat','w')
     for d in dir_list:
         print d
         phase_names,coord = reflection_points(d+'/3dreflection_points.h5')
