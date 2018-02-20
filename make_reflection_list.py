@@ -6,7 +6,7 @@
 File Name : make_reflection_list.py
 Purpose : make ascii files of reflection points for psxy
 Creation Date : 19-02-2018
-Last Modified : Tue 20 Feb 2018 10:51:32 AM EST
+Last Modified : Tue 20 Feb 2018 11:08:55 AM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -34,15 +34,15 @@ def main():
         phase_names,coord = reflection_points(d+'/3dreflection_points.h5')
         for idx,ii in enumerate(phase_names):
             if ii == 'sScS':
-                sScS.write(str(coord[idx][0])+' '+str(coord[idx][1])+'\n')
+                sScS.write(str(coord[idx][1])+' '+str(coord[idx][0])+'\n')
             if ii == 'sScSScS':
-                sScS2.write(str(coord[idx][0])+' '+str(coord[idx][1])+'\n')
+                sScS2.write(str(coord[idx][1])+' '+str(coord[idx][0])+'\n')
             if ii == 'sScSScSScS':
-                sScS3.write(str(coord[idx][0])+' '+str(coord[idx][1])+'\n')
+                sScS3.write(str(coord[idx][1])+' '+str(coord[idx][0])+'\n')
             if ii == 'ScSScS':
-                ScS2.write(str(coord[idx][0])+' '+str(coord[idx][1])+'\n')
+                ScS2.write(str(coord[idx][1])+' '+str(coord[idx][0])+'\n')
             if ii == 'ScSScSScS':
-                ScS3.write(str(coord[idx][0])+' '+str(coord[idx][1])+'\n')
+                ScS3.write(str(coord[idx][1])+' '+str(coord[idx][0])+'\n')
     ScS2.close()
     ScS3.close()
     sScS.close()
