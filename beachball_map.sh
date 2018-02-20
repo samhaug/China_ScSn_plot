@@ -4,6 +4,7 @@ region=70/180/-30/60
 #scale=m0.08i
 scale=m0.05i
 file=beachball_map
+beach_file=datfiles/beachballs.dat
 #gmtset FONT_LABEL=8
 #gmtset FONT_TITLE=8
 #gmtset FONT_ANNOT_PRIMARY=8
@@ -18,7 +19,9 @@ while read lat lon H mrr mtt mpp mrt mrp mtp e lon lat; do
 psmeca -R$region -J$scale -Sm0.2i -K -O << END >> $file.ps
 $lon $lat $H $mrr $mtt $mpp $mrt $mrp $mrp $e $lon $lat
 END
-done < beachballs.dat
+done < $beach_file
+
 
 ps2pdf $file.ps
 rm $file.ps
+convert -density 150 $file.pdf -quality 90 $file.png
