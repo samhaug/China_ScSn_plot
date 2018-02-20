@@ -4,9 +4,9 @@ region=70/180/-30/60
 #scale=m0.08i
 scale=m0.06i
 #file=reflection_map
-file=single_reflection_map
-stations=single_datfiles/stations.dat
-beachballs=single_datfiles/beachballs.dat
+file=reflection_map
+stations=datfiles/stations.dat
+beachballs=datfiles/beachballs.dat
 #gmtset FONT_LABEL=8
 #gmtset FONT_TITLE=8
 #gmtset FONT_ANNOT_PRIMARY=8
@@ -31,16 +31,16 @@ gmt psxy $stations -R$region -J$scale -Si0.10c -Gblack -K -O >> $file.ps
 #gmt psxy sScS2.dat -R$region -J$scale -Sa0.10c -G#5BB527 -t50 -K -O >> $file.ps
 #gmt psxy sScS3.dat -R$region -J$scale -Sa0.10c -G#B5AF27 -t50 -K -O >> $file.ps
 
-#gmt psxy single_datfiles/ScS2.dat -R$region -J$scale -Sa0.10c \
-#    -G#27A2B5 -K -O >> $file.ps
-#gmt psxy single_datfiles/ScS3.dat -R$region -J$scale -Sa0.10c \
-#    -G#8127B5  -K -O >> $file.ps
-#gmt psxy single_datfiles/sScS.dat -R$region -J$scale -Sa0.10c \
-#    -G#B53A27 -K -O >> $file.ps
-#gmt psxy single_datfiles/sScS2.dat -R$region -J$scale -Sa0.10c \
-#    -G#5BB527 -K -O >> $file.ps
-gmt psxy single_datfiles/sScS3.dat -R$region -J$scale -Sa0.10c \
-    -G#B5AF27 -K -O >> $file.ps
+gmt psxy datfiles/ScS2.dat -R$region -J$scale -Sa0.10c \
+    -G#27A2B5 -t50 -K -O >> $file.ps
+gmt psxy datfiles/ScS3.dat -R$region -J$scale -Sa0.10c \
+    -G#8127B5  -t50 -K -O >> $file.ps
+gmt psxy datfiles/sScS.dat -R$region -J$scale -Sa0.10c \
+    -G#B53A27 -t50 -K -O >> $file.ps
+gmt psxy datfiles/sScS2.dat -R$region -J$scale -Sa0.10c \
+    -G#5BB527 -t50 -K -O >> $file.ps
+gmt psxy datfiles/sScS3.dat -R$region -J$scale -Sa0.10c \
+    -G#B5AF27 -t50 -K -O >> $file.ps
 
 ps2pdf $file.ps
 convert -density 150 $file.pdf -quality 90 $file.png
