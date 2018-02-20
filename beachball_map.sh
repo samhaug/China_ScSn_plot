@@ -13,7 +13,7 @@ beach_file=datfiles/beachballs.dat
 #plot events
 #psbasemap -R$region -J$scale -B10 -K -D$boxregion -F > $file.ps
 #pscoast -R$region -J$scale -B10 -Slightblue -Gwhite -K  > $file.ps
-pscoast -R$region -J$scale -A10 -S#27A2B5 -G#B53A27 -K  > $file.ps
+pscoast -R$region -J$scale -B10 -S#27A2B5 -G#B53A27 -K  > $file.ps
 
 while read lat lon H mrr mtt mpp mrt mrp mtp e lon lat; do
 psmeca -R$region -J$scale -Sm0.2i -K -O << END >> $file.ps
