@@ -26,7 +26,7 @@ while read lat lon H mrr mtt mpp mrt mrp mtp e lon lat; do
 psmeca -R$region -J$scale -Sm0.2i -K -O << END >> $file.ps
 $lon $lat $H $mrr $mtt $mpp $mrt $mrp $mrp $e $lon $lat
 END
-done < beachballs.dat
+done < one_beachball.dat
 
 ps2pdf $file.ps
 rm $file.ps
