@@ -6,7 +6,7 @@
 File Name : make_reverb_paths.py
 Purpose : Make data files to plot ScS reverb raypaths with plot_raypaths.sh
 Creation Date : 22-02-2018
-Last Modified : Thu 22 Feb 2018 02:23:52 PM EST
+Last Modified : Thu 22 Feb 2018 04:14:49 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -34,6 +34,7 @@ def find_paths(parent_phase):
                                    distance_in_degree=60,
                                    phase_list=phase_list)
     for idx,arr in enumerate(arrivals):
+        print arr.purist_name
         path = np.array([list((np.degrees(i[2]),6371-i[3]))
                               for i in arr.path])
         path[:,0] += 60
