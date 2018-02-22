@@ -6,7 +6,7 @@
 File Name : make_reverb_paths.py
 Purpose : Make data files to plot ScS reverb raypaths with plot_raypaths.sh
 Creation Date : 22-02-2018
-Last Modified : Thu 22 Feb 2018 04:14:49 PM EST
+Last Modified : Thu 22 Feb 2018 05:15:45 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -23,7 +23,7 @@ phase_families = {'sScS':['sSv670SScS','sScSSv670S'],
                  'sScSScSScS':['sSv670SScSScSScS','sScSSv670SScSScS',
                                'sScSScSSv670SScS','sScSScSScSSv670S'],
                  'ScSScS':['ScS^670ScS'],
-                 'ScSScSScS':['ScS^670ScSScS','ScScS^670ScS']}
+                 'ScSScSScS':['ScS^670ScSScS','ScSScS^670ScS']}
 
 def find_paths(parent_phase):
     phase_list = [parent_phase]
@@ -43,7 +43,6 @@ def find_paths(parent_phase):
         plt.show()
 
 for keys in phase_families:
-    find_paths(keys)
-
+   find_paths(keys)
 
 
