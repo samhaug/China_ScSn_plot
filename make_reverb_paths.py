@@ -6,7 +6,7 @@
 File Name : make_reverb_paths.py
 Purpose : Make data files to plot ScS reverb raypaths with plot_raypaths.sh
 Creation Date : 22-02-2018
-Last Modified : Thu 22 Feb 2018 12:39:22 PM EST
+Last Modified : Thu 22 Feb 2018 12:41:24 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -26,7 +26,7 @@ phase_families = {'sScS':['sSv670SScS','sScSSv670S'],
                  'ScSScSScS':['ScS^670ScSScS','ScScS^670ScS']}
 
 arr = model.get_ray_paths(source_depth_in_km=600,
-                          distance_in_degree=45,
+                          distance_in_degree=60,
                           phase_list=['sScS',
                           phase_families['sScS'][0],
                           phase_families['sScS'][1]])
@@ -38,9 +38,9 @@ rev_1 = np.array([list((np.degrees(i[2]),6371-i[3]))
 rev_2 = np.array([list((np.degrees(i[2]),6371-i[3]))
                       for i in arr[2].path])
 
-main_path[:,0] += -1*main_path[:,0].max()
-rev_1[:,0] += -1*rev_1[:,0].max()
-rev_2[:,0] += -1*rev_2[:,0].max()
+main_path[:,0] += -1*main_path[:,0].max()+80
+rev_1[:,0] += -1*rev_1[:,0].max()+80
+rev_2[:,0] += -1*rev_2[:,0].max()+80
 
 np.savetxt('raypath_datfiles/sScS.dat',main_path)
 np.savetxt('raypath_datfiles/sScS_1.dat',rev_1)
