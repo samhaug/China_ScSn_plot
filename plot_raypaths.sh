@@ -12,7 +12,7 @@ region=50/130/3480/6371
 #S plot
 #gmt psxy CE_grid.dat -R$region3 -J$scale -B0 -Wthinnest,black -K -O -P >> $file.ps
 #############################################################################
-gmt psxy $datadir/sScS0.dat -R$region -J$scale -Bxa20  \
+gmt psxy $datadir/sScS0.dat -R$region -J$scale -Bxa180  \
                            -BwNsE -Wthin,black -Y20 -X0.1 -K -P > $file.ps
 gmt psxy $datadir/sScS1.dat -R$region -J$scale \
                            -BwNsE -Wthin,#27A2B5 -K -O >> $file.ps
@@ -27,7 +27,7 @@ gmt psxy $datadir/220.dat -R$region -J$scale \
                            -Wthinnest,black -K -O >> $file.ps
 
 #############################################################################
-gmt psxy $datadir/sScSScS0.dat -R$region -J$scale -Bxa20 \
+gmt psxy $datadir/sScSScS0.dat -R$region -J$scale -Bxa180 \
                            -BwNsE -Wthin,black -X6.5 -K -O  >> $file.ps
 gmt psxy $datadir/sScSScS1.dat -R$region -J$scale \
                            -BwNsE -Wthin,#27A2B5 -K -O >> $file.ps
@@ -44,7 +44,7 @@ gmt psxy $datadir/220.dat -R$region -J$scale \
                            -Wthinnest,black -K -O >> $file.ps
 
 #############################################################################
-gmt psxy $datadir/sScSScSScS0.dat -R$region -J$scale -Bxa20 \
+gmt psxy $datadir/sScSScSScS0.dat -R$region -J$scale -Bxa180 \
                            -BwNsE -Wthin,black -X6.5 -K -O  >> $file.ps
 gmt psxy $datadir/sScSScSScS1.dat -R$region -J$scale \
                            -BwNsE -Wthin,#27A2B5 -K -O >> $file.ps
@@ -77,11 +77,11 @@ gmt psxy $datadir/220.dat -R$region -J$scale \
 
 #############################################################################
 
-gmt psxy $datadir/ScSScSScS5.dat -R$region -J$scale -Bxa180 \
+gmt psxy $datadir/ScSScSScS2.dat -R$region -J$scale -Bxa180 \
                            -BwNsE -Wthin,black -X6.5 -K -O >> $file.ps
 gmt psxy $datadir/ScSScSScS1.dat -R$region -J$scale \
                            -BwNsE -Wthin,#27A2B5 -K -O >> $file.ps
-gmt psxy $datadir/ScSScSScS2.dat -R$region -J$scale \
+gmt psxy $datadir/ScSScSScS0.dat -R$region -J$scale \
                            -BwNsE -Wthin,#8127B5 -K -O >> $file.ps
 
 gmt psxy $datadir/670.dat -R$region -J$scale \
