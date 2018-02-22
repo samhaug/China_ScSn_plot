@@ -6,16 +6,21 @@ datadir=raypath_datfiles
 gmt gmtset FONT_TITLE = 10p,Helvetica,black
 gmt gmtset MAP_FRAME_PEN = thick,black
 region=-30/60/3480/6371
-region=40/140/3480/6371
+region=50/130/3480/6371
 #region3=30/150/3480/6371
 
 #S plot
 #gmt psxy CE_grid.dat -R$region3 -J$scale -B0 -Wthinnest,black -K -O -P >> $file.ps
 gmt psxy $datadir/sScS.dat -R$region -J$scale -Bxa20 -Bya500 \
-                           -BwNsE -Wblack -X4 > $file.ps
+                           -BwNsE -Wthick,black -X4 -K > $file.ps
+gmt psxy $datadir/sScS_1.dat -R$region -J$scale -Bxa20 -Bya500 \
+                           -BwNsE -Wthick,#27A2B5 -K -O >> $file.ps
+gmt psxy $datadir/sScS_2.dat -R$region -J$scale -Bxa20 -Bya500 \
+                           -BwNsE -Wthick,#B53A27 -K -O >> $file.ps
 ps2pdf $file.ps
 rm $file.ps
 display $file.pdf
+convert -density 150 $file.pdf -quality 90 $file.png
 
 #gmt psscale -D11/2/2/0.2 -B$vmax:"10@+-6@+ s/km@+3@+": -Cv.cpt -K -O -P >> $file.ps
 
