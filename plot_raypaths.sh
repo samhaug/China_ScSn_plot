@@ -2,20 +2,17 @@
 # Plot raypaths for ScS reverberations
 file=reverb_raypaths
 scale=P10
-datadir=raypath_datafiles
+datadir=raypath_datfiles
 gmt gmtset FONT_TITLE = 10p,Helvetica,black
 gmt gmtset MAP_FRAME_PEN = thick,black
-region=0/360/11.3/2867.0
-region2=0/360/3480/6371
-region3= 0/40/3480/6371
-region4=-110/10/3480/6371
-region3=30/150/3480/6371
+region=-30/60/3480/6371
+region=30/150/3480/6371
+#region3=30/150/3480/6371
 
 #S plot
 #gmt psxy CE_grid.dat -R$region3 -J$scale -B0 -Wthinnest,black -K -O -P >> $file.ps
-gmt psxy $datadir/sScS.dat -R$region3 -J$scale -W1 -P >> $file.ps
-#gmt psxy $datadir/eq_S -R$region3 -J$scale -Sa0.35 -Gyellow -W0.5 -K -O -P >> $file.ps
-#gmt psxy $datadir/rec_S -R$region3 -J$scale -St0.30 -Gred -W0.5 -N -K -O -P >> $file.ps
+gmt psxy $datadir/sScS.dat -R$region -J$scale -Bxa20 -Bya500 \
+                           -BwNsE -Wblack -X4 > $file.ps
 ps2pdf $file.ps
 rm $file.ps
 
