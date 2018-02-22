@@ -1,7 +1,7 @@
 #!/bin/bash
 # Plot raypaths for ScS reverberations
 file=reverb_raypaths
-scale=P10
+scale=P6
 datadir=raypath_datfiles
 gmt gmtset FONT_TITLE = 10p,Helvetica,black
 gmt gmtset MAP_FRAME_PEN = thick,black
@@ -11,57 +11,29 @@ region=50/130/3480/6371
 
 #S plot
 #gmt psxy CE_grid.dat -R$region3 -J$scale -B0 -Wthinnest,black -K -O -P >> $file.ps
-gmt psxy $datadir/sScS.dat -R$region -J$scale -Bxa20 -Bya500 \
-                           -BwNsE -Wthick,black -X4 -K > $file.ps
-gmt psxy $datadir/sScS_1.dat -R$region -J$scale -Bxa20 -Bya500 \
-                           -BwNsE -Wthick,#27A2B5 -K -O >> $file.ps
-gmt psxy $datadir/sScS_2.dat -R$region -J$scale -Bxa20 -Bya500 \
-                           -BwNsE -Wthick,#B53A27 -K -O >> $file.ps
+gmt psxy $datadir/sScS0.dat -R$region -J$scale -Bxa20 -Bya500 \
+                           -BwNsE -Wthin,black -Y20 -X0.1 -K -P > $file.ps
+gmt psxy $datadir/sScS1.dat -R$region -J$scale \
+                           -BwNsE -Wthin,#27A2B5 -K -O >> $file.ps
+gmt psxy $datadir/sScS2.dat -R$region -J$scale \
+                           -BwNsE -Wthin,#8127B5 -K -O >> $file.ps
+
+gmt psxy $datadir/sScSScS0.dat -R$region -J$scale -Bxa20 -Bya500 \
+                           -BwNsE -Wthin,black -X8 -K -O  >> $file.ps
+gmt psxy $datadir/sScSScS1.dat -R$region -J$scale \
+                           -BwNsE -Wthin,#27A2B5 -K -O >> $file.ps
+gmt psxy $datadir/sScSScS2.dat -R$region -J$scale \
+                           -BwNsE -Wthin,#8127B5 -K -O >> $file.ps
+gmt psxy $datadir/sScSScS3.dat -R$region -J$scale \
+                           -BwNsE -Wthin,#B53A27 -K -O >> $file.ps
+
+#c -G#5BB527 
+#c -G#B5AF27 
+
 ps2pdf $file.ps
 rm $file.ps
 display $file.pdf
 convert -density 150 $file.pdf -quality 90 $file.png
 
-#gmt psscale -D11/2/2/0.2 -B$vmax:"10@+-6@+ s/km@+3@+": -Cv.cpt -K -O -P >> $file.ps
-
-#P plot
-#vmax=2.0
-#dv=0.4
-#gmt makecpt -C$colors -D -T-$vmax/$vmax/$dv -Z -I > v.cpt
-#kern=P80_kernel_rotated.dat
-#kern=P80_bandpass_rotated.dat
-#awk {'print $1,6371.0-$2,$3}' $datadir/$kern > tmp.xy
-#gmt blockmean tmp.xy -I1.0/10 -R$region2 > tmp_mean.xy
-#gmt surface tmp_mean.xy -Gkernel.grd -I0.1/20 -R$region2 -T0.0
-#gmt grdimage kernel.grd -Y-5 -R$region3 -J$scale -B0 -B+t"P" -Cv.cpt -P -K -O >> $file.ps
-#gmt psxy CE_grid.dat -R$region3 -J$scale -B0 -Wthinnest,black -K -O -P >> $file.ps
-#
-#gmt psxy $datadir/Ppath_d80_rotated.dat -R$region3 -J$scale -W1 -K -O -P >> $file.ps
-#gmt psxy $datadir/eq_S -R$region3 -J$scale -Sa0.35 -Gyellow -W0.5 -K -O -P >> $file.ps
-#gmt psxy $datadir/rec_S -R$region3 -J$scale -St0.30 -Gred -W0.5 -N -K -O -P >> $file.ps
-#
-#gmt psscale -D11/2/2/0.2 -B$vmax:"10@+-6@+ s/km@+3@+": -Cv.cpt -K -O -P >> $file.ps
-
-#SKS plot
-#
-#
-#vmax=5.0
-#dv=1.0
-#gmt makecpt -C$colors -D -T-$vmax/$vmax/$dv -Z -I > v.cpt
-#kern=SKS100_kernel_rotated.dat
-#kern=SKS100_bandpass_rotated.dat
-#awk {'print $1,6371.0-$2,$3}' $datadir/$kern > tmp.xy
-#gmt blockmean tmp.xy -I1.0/10 -R$region2 > tmp_mean.xy
-#gmt surface tmp_mean.xy -Gkernel.grd -I0.1/20 -R$region2 -T0.0
-#gmt grdimage kernel.grd -Y-5 -R$region3 -J$scale -B0 -B+t"SKS" -Cv.cpt -P -K -O >> $file.ps
-#gmt psxy CE_grid.dat -R$region3 -J$scale -B0 -Wthinnest,black -K -O -P >> $file.ps
-#gmt psxy $datadir/SKS_leg1.dat -R$region3 -J$scale -W1 -K -O -P >> $file.ps
-#gmt psxy $datadir/SKS_leg3.dat -R$region3 -J$scale -W1 -K -O -P >> $file.ps
-#gmt psxy $datadir/eq_SKS -R$region3 -J$scale -Sa0.35 -Gyellow -W0.5 -K -O -P >> $file.ps
-#gmt psxy $datadir/rec_SKS -R$region3 -J$scale -St0.30 -Gred -W0.5 -N -K -O -P >> $file.ps
-#
-#gmt psscale -D11/2/2/0.2 -B$vmax:"10@+-6@+ s/km@+3@+": -Cv.cpt -K -O -P >> $file.ps
-#
-#
 #ps2pdf $file.ps
 #rm $file.ps
