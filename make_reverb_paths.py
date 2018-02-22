@@ -6,7 +6,7 @@
 File Name : make_reverb_paths.py
 Purpose : Make data files to plot ScS reverberation raypaths
 Creation Date : 22-02-2018
-Last Modified : Thu 22 Feb 2018 11:43:07 AM EST
+Last Modified : Thu 22 Feb 2018 11:51:27 AM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -28,12 +28,12 @@ phase_families = {'sScS':['sSv670SScS','sScSSv670S'],
 arr = model.get_ray_paths(source_depth_in_km=600,
                           distance_in_degree=45,
                           phase_list=['sScS',
-                                     phase_families['sScS'][0],
-                                     phase_families['sScS'][1]])
+                          phase_families['sScS'][0],
+                          phase_families['sScS'][1]])
 
-main_path = np.array([list((np.degrees(i[2]),i[3])) for i in arr[0].path])
-rev_1 = np.array([list((np.degrees(i[2]),i[3])) for i in arr[1].path])
-rev_2 = np.array([list((np.degrees(i[2]),i[3])) for i in arr[2].path])
+main_path = np.array([list((np.degrees(i[2]),6371-i[3])) for i in arr[0].path])
+rev_1 = np.array([list((np.degrees(i[2]),6371-i[3])) for i in arr[1].path])
+rev_2 = np.array([list((np.degrees(i[2]),6371-i[3])) for i in arr[2].path])
 
 np.savetxt('raypath_datfiles/sScS.dat',main_path)
 np.savetxt('raypath_datfiles/sScS_1.dat',rev_1)
