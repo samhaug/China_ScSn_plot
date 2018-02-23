@@ -26,6 +26,9 @@ gmt psxy $datadir/410.dat -R$region -J$scale \
 gmt psxy $datadir/220.dat -R$region -J$scale \
                            -Wthinnest,black -K -O >> $file.ps
 
+gmt psxy $datadir/earthquake.dat -R$region -J$scale -O -K -Sa.3 \
+                            -Wthick,yellow >> $file.ps
+
 #############################################################################
 gmt psxy $datadir/sScSScS0.dat -R$region -J$scale -Bxa180 \
                            -BwNsE -Wthin,black -X6.5 -K -O  >> $file.ps
@@ -43,6 +46,8 @@ gmt psxy $datadir/410.dat -R$region -J$scale \
 gmt psxy $datadir/220.dat -R$region -J$scale \
                            -Wthinnest,black -K -O >> $file.ps
 
+gmt psxy $datadir/earthquake.dat -R$region -J$scale -O -K -Sa.3 \
+                            -Wthick,yellow >> $file.ps
 #############################################################################
 gmt psxy $datadir/sScSScSScS0.dat -R$region -J$scale -Bxa180 \
                            -BwNsE -Wthin,black -X6.5 -K -O  >> $file.ps
@@ -62,9 +67,11 @@ gmt psxy $datadir/410.dat -R$region -J$scale \
 gmt psxy $datadir/220.dat -R$region -J$scale \
                            -Wthinnest,black -K -O >> $file.ps
 
+gmt psxy $datadir/earthquake.dat -R$region -J$scale -O -K -Sa.3 \
+                            -Wthick,yellow >> $file.ps
 #############################################################################
 gmt psxy $datadir/ScSScS0.dat -R$region -J$scale -Bxa180 \
-                           -BwNsE -Wthin,black -Y-3 -X-10 -K -O >> $file.ps
+                           -BwNsE -Wthin,black -Y-3 -X-9.7 -K -O >> $file.ps
 gmt psxy $datadir/ScSScS1.dat -R$region -J$scale \
                            -BwNsE -Wthin,#27A2B5 -K -O >> $file.ps
 
@@ -75,6 +82,8 @@ gmt psxy $datadir/410.dat -R$region -J$scale \
 gmt psxy $datadir/220.dat -R$region -J$scale \
                            -Wthinnest,black -K -O >> $file.ps
 
+gmt psxy $datadir/earthquake.dat -R$region -J$scale -O -K -Sa.3 \
+                            -Wthick,yellow >> $file.ps
 #############################################################################
 
 gmt psxy $datadir/ScSScSScS2.dat -R$region -J$scale -Bxa180 \
@@ -90,6 +99,9 @@ gmt psxy $datadir/410.dat -R$region -J$scale \
                            -Wthinnest,black -K -O >> $file.ps
 gmt psxy $datadir/220.dat -R$region -J$scale \
                            -Wthinnest,black -K -O >> $file.ps
+
+gmt psxy $datadir/earthquake.dat -R$region -J$scale -O -K -Sa.3 \
+                            -Wthick,yellow >> $file.ps
 #############################################################################
 
 ps2pdf $file.ps
