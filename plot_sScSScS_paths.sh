@@ -18,6 +18,8 @@ gmt psxy $datadir/sScSScS1.dat -R$region -J$scale \
                            -BwNsE -Wthin,#5BB527 -K -O >> $file.ps
 gmt psxy $datadir/sScSScS2.dat -R$region -J$scale \
                            -BwNsE -Wthin,#5BB527 -K -O >> $file.ps
+gmt psxy $datadir/sScSScS3.dat -R$region -J$scale \
+                           -BwNsE -Wthin,#5BB527 -K -O >> $file.ps
 
 gmt psxy $datadir/670.dat -R$region -J$scale \
                            -BwNsE -Wthinnest,black -K -O >> $file.ps
