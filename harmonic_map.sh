@@ -1,12 +1,8 @@
 #!/bin/bash
 boxregion=80/150/-10/50 
 region=70/180/-30/60 
-#scale=m0.08i
 scale=m0.06i
-#file=reflection_map
-file=reflection_map
-stations=datfiles/stations.dat
-beachballs=datfiles/beachballs.dat
+file=harmonic_map
 
 makecpt -Cpolar -D-15/15/0.01 -Z > cmap.cpt
 xyz2grd spherical.dat -R$region -Gtmp.grd -I0.5/0.5
