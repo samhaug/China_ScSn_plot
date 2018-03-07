@@ -6,7 +6,7 @@
 File Name : mean_wiggle.py
 Purpose : plot vertical wiggles
 Creation Date : 17-02-2018
-Last Modified : Tue 20 Feb 2018 06:01:45 PM EST
+Last Modified : Tue 06 Mar 2018 06:28:43 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -23,19 +23,21 @@ def main():
                         help='data gridfile',default='data_grid.h5')
     parser.add_argument('-s','--synth',metavar='H5_FILE',type=str,
                         help='synth gridfile',default='synth_grid.h5')
+    parser.add_argument('-a','--axes',metavar='H5_FILE',type=int,
+                        help='synth gridfile',default=0)
     args = parser.parse_args()
     fig,ax = setup_figure()
     data = h5py.File(args.data,'r',driver='core')
     synth = h5py.File(args.synth,'r',driver='core')
-    plot_wiggles(data,ax,axes=0,color='k',alpha=0.7)
-    #plot_wiggles(synth,ax,axes=0,color='r',alpha=0.3)
+    #plot_wiggles(data,ax,axes=args.axes,color='k',alpha=0.7)
+    plot_wiggles(synth,ax,axes=0,color='r',alpha=0.3)
     ax.set_ylim(data['h'][:].max(),data['h'][:].min())
     plt.tight_layout()
     plt.show()
     data.close()
     synth.close()
 
-def plot_wiggles(f,ax,axes=0,color='k',alpha=0.5,zorder=0):
+def plot_wiggles(f,ax,axes,color='k',alpha=0.5,zorder=0):
     grid = f['grid'][:]
     gc = f['grid_count'][:]+1
     grid *= 1./gc

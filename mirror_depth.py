@@ -6,7 +6,7 @@
 File Name : mirror_depth.py
 Purpose : Demonstrate the mirroring depth of ScS reverberations
 Creation Date : 15-02-2018
-Last Modified : Thu 15 Feb 2018 11:01:16 AM EST
+Last Modified : Mon 05 Mar 2018 12:34:08 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -44,6 +44,7 @@ def main():
     ax.text(211,1657,'Bottom side',size=8,rotation=-40)
     plt.tight_layout()
     plt.savefig('mirror_depth.pdf')
+    plt.savefig('mirror_depth.png')
     plt.show()
 
 def depth_time(h,evdp,gcarc):

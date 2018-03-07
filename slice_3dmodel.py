@@ -6,7 +6,7 @@
 File Name : slice_grid.py
 Purpose : plot a slice of a CRP grid between two coordinates
 Creation Date : 25-01-2018
-Last Modified : Wed 07 Mar 2018 12:40:13 PM EST
+Last Modified : Wed 07 Mar 2018 11:04:22 AM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -14,9 +14,9 @@ Created By : Samuel M. Haugland
 
 import numpy as np
 from matplotlib import pyplot as plt
-import sys
 import h5py
 import argparse
+from netCDF4 import Dataset
 from scipy.interpolate import RegularGridInterpolator
 
 
@@ -60,36 +60,65 @@ def main():
 
     if lat_1 > max(lat) or lat_1 < min(lat):
         print 'lat_1 out of range'
-        print min(lat),max(lat),
-        sys.exit()
     if lat_2 > max(lat) or lat_2 < min(lat):
         print 'lat_2 out of range'
-        print min(lat),max(lat)
-        sys.exit()
     if lon_1 > max(lon) or lon_1 < min(lon):
         print 'lon_1 out of range'
-        print min(lon),max(lon)
-        sys.exit()
     if lon_2 > max(lon) or lon_2 < min(lon):
         print 'lon_2 out of range'
-        print min(lon),max(lon)
-        sys.exit()
 
-    fig,ax = plt.subplots(figsize=(15,5))
-    int3d = RegularGridInterpolator((lon,lat,h),grid)
-    cross_section = int3d(coords)
+    #fig,ax = plt.subplots(figsize=(15,5))
+    #int3d = RegularGridInterpolator((lon,lat,h),grid)
+    #cross_section = int3d(coords)
+    #cross_section = np.reshape(cross_section,hgrid_one.shape).T
+
+    #for ii in range(cross_section.shape[1]):
+    #    cross_section[:,ii] *= 1./np.max(cross_section[:,ii])
+    #ax.imshow(cross_section,aspect='auto',extent=[0,200,800,50],alpha=0.7)
+    #plot_wiggles(cross_section,hspace,ax)
+    #ax.set_ylim(800,300)
+    #ax.set_xlim(0,200)
+
+    #plt.tight_layout()
+    #plt.show()
+
+    int_3d_model = interp_netcdf_3d()
+    fig,ax = plt.subplots()
+    coords = np.hstack((hgrid,latgrid,longrid))
+    #print latgrid.min(),latgrid.max()
+    #print longrid.min(),longrid.max()
+    #print hgrid.min(),hgrid.max()
+    cross_section = int_3d_model(coords)
     cross_section = np.reshape(cross_section,hgrid_one.shape).T
-
-    for ii in range(cross_section.shape[1]):
-        cross_section[:,ii] *= 1./np.max(cross_section[:,ii])
-    ax.imshow(cross_section,aspect='auto',extent=[0,200,800,50],alpha=0.7)
-    plot_wiggles(cross_section,hspace,ax)
-    ax.set_ylim(800,300)
-    ax.set_xlim(0,200)
-
-    plt.tight_layout()
-
+    print cross_section.shape
+    #cross_section = np.reshape(cross_section,hgrid_one.shape).T
+    ax.imshow(cross_section,aspect='auto',cmap='coolwarm_r')
     plt.show()
+
+def interp_netcdf_3d():
+    dataset = Dataset('/home/samhaug/work1/China_ScSn_code/3D_model/3D2016-09Sv-depth.nc')
+    lat = dataset.variables['latitude'][::-1]
+    lon = dataset.variables['longitude'][:]
+    h = dataset.variables['depth'][:]
+    print lat.min(),lat.max()
+    print lon.min(),lon.max()
+    print h.min(),h.max()
+    h = np.hstack((0,h))
+    dvs = dataset.variables['dvs'][:].data
+    top = np.zeros((1,dvs.shape[1],dvs.shape[2]))
+    dvs = np.vstack((top,dvs))
+    #for ii in range(17,len(dvs)):
+    #    dvs[ii] = np.zeros(dvs[ii].shape)
+    #We use 1-(dvs/100.) to adjust ttimes
+    #plt.imshow(dvs[2],aspect='auto',extent=[lon[0],lon[-1],lat[0],lat[-1]])
+    plt.imshow(dvs[5,:,:],aspect='auto',cmap='coolwarm_r',
+               extent=[-180,180,-90,90])
+    np.savetxt('dvs_125km.dat',dvs[5,:,:])
+    np.savetxt('dvs_70km.dat',dvs[2,:,:])
+    plt.colorbar()
+    int_3d = RegularGridInterpolator((h,lat,lon),dvs)
+    #plt.show()
+    return int_3d
 
 def plot_wiggles(cross_section,h,ax,color='k',alpha=0.6,zorder=0):
     for idx,ii in enumerate(range(cross_section.shape[1])[::2]):
