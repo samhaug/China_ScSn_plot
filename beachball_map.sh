@@ -26,3 +26,4 @@ done < $beach_file
 ps2pdf $file.ps
 rm $file.ps
 convert -density 150 $file.pdf -quality 90 $file.png
+display $file.png

@@ -31,6 +31,7 @@ gmt psxy $stations -R$region -J$scale -Si0.10c -Gblack -K -O >> $file.ps
 #gmt psxy sScS2.dat -R$region -J$scale -Sa0.10c -G#5BB527 -t50 -K -O >> $file.ps
 #gmt psxy sScS3.dat -R$region -J$scale -Sa0.10c -G#B5AF27 -t50 -K -O >> $file.ps
 
+
 gmt psxy datfiles/ScS2.dat -R$region -J$scale -Sa0.10c \
     -G#27A2B5 -t50 -K -O >> $file.ps
 gmt psxy datfiles/ScS3.dat -R$region -J$scale -Sa0.10c \
@@ -42,6 +43,15 @@ gmt psxy datfiles/sScS2.dat -R$region -J$scale -Sa0.10c \
 gmt psxy datfiles/sScS3.dat -R$region -J$scale -Sa0.10c \
     -G#B5AF27 -t50 -K -O >> $file.ps
 
+#gmt psxy slice1.dat -R$region -J$scale -W2,red -K -O >> $file.ps
+#gmt psxy slice2.dat -R$region -J$scale -W2,red -K -O >> $file.ps
+#gmt psxy slice3.dat -R$region -J$scale -W2,red -K -O >> $file.ps
+#gmt psxy slice4.dat -R$region -J$scale -W2,red -K -O >> $file.ps
+#gmt psxy slice5.dat -R$region -J$scale -W2,red -K -O >> $file.ps
+#gmt psxy slice6.dat -R$region -J$scale -W2,red -K -O >> $file.ps
+gmt psxy slice7.dat -R$region -J$scale -W2,red -K -O >> $file.ps
+
 ps2pdf $file.ps
 convert -density 150 $file.pdf -quality 90 $file.png
 rm $file.ps
+display $file.png
