@@ -6,7 +6,7 @@
 File Name : slice_grid.py
 Purpose : plot a slice of a CRP grid between two coordinates
 Creation Date : 25-01-2018
-Last Modified : Wed 07 Mar 2018 12:40:13 PM EST
+Last Modified : Wed 07 Mar 2018 03:58:46 PM EST
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -18,6 +18,7 @@ import sys
 import h5py
 import argparse
 from scipy.interpolate import RegularGridInterpolator
+import matplotlib.gridspec as gridspec
 
 
 def main():
@@ -75,27 +76,54 @@ def main():
         print min(lon),max(lon)
         sys.exit()
 
-    fig,ax = plt.subplots(figsize=(15,5))
+    fig,ax0,ax1 = setup_figure()
     int3d = RegularGridInterpolator((lon,lat,h),grid)
+    count_int3d = RegularGridInterpolator((lon,lat,h),grid_count)
     cross_section = int3d(coords)
+    count_cross_section = count_int3d(coords)
     cross_section = np.reshape(cross_section,hgrid_one.shape).T
+    count_cross_section = np.reshape(count_cross_section,hgrid_one.shape).T
+    count = np.sum(count_cross_section,axis=0)/count_cross_section.shape[0]
+    x = np.linspace(0,200,num=len(count))
+    ax1.fill_between(x,count,0,color='k')
 
     for ii in range(cross_section.shape[1]):
-        cross_section[:,ii] *= 1./np.max(cross_section[:,ii])
-    ax.imshow(cross_section,aspect='auto',extent=[0,200,800,50],alpha=0.7)
-    plot_wiggles(cross_section,hspace,ax)
-    ax.set_ylim(800,300)
-    ax.set_xlim(0,200)
+        cross_section[:,ii] *= 1./np.max(np.abs(cross_section[:,ii]))
+    ax0.imshow(cross_section,aspect='auto',extent=[0,200,800,50],alpha=1.7,
+               cmap='Spectral_r',interpolation='lanczos')
+    plot_wiggles(cross_section,hspace,ax0)
 
-    plt.tight_layout()
-
+    plt.savefig('slice_grid.png')
     plt.show()
 
-def plot_wiggles(cross_section,h,ax,color='k',alpha=0.6,zorder=0):
+def setup_figure():
+    #fig,ax = plt.subplots(2,1,figsize=(15,5))
+    fig = plt.figure(figsize=(12,8))
+    gs = gridspec.GridSpec(100,100)
+    ax0 = plt.subplot(gs[0:80,:])
+    ax1 = plt.subplot(gs[80::,:])
+    ax1.set_xlim(0,200)
+    ax0.set_ylim(800,300)
+    ax0.set_xlim(0,200)
+
+    ax0.get_xaxis().set_ticks([])
+    ax1.get_xaxis().set_ticks([])
+    ax0.tick_params(axis='both', which='major', labelsize=8)
+    ax1.tick_params(axis='both', which='major', labelsize=8)
+    ax0.set_ylabel('Depth (km)',size=12)
+    ax1.set_ylabel('Counts',size=12)
+    ax1.spines['top'].set_visible(False)
+    ax1.spines['right'].set_visible(False)
+    ax1.grid()
+    plt.tight_layout()
+    return fig,ax0,ax1
+
+def plot_wiggles(cross_section,h,ax,color='k',alpha=0.4,zorder=0):
     for idx,ii in enumerate(range(cross_section.shape[1])[::2]):
         wiggle = cross_section[:,ii]/np.max(np.abs(cross_section[:,ii]))
         ax.fill_betweenx(h,2*wiggle+2*idx,2*idx,
-                        where=wiggle+2*idx >= 2*idx,facecolor=color,lw=0.5,alpha=alpha)
+                        where=wiggle+2*idx >= 2*idx,
+                        facecolor=color,lw=0.5,alpha=alpha)
         ax.plot(2*wiggle+2*idx,h,lw=0.5,alpha=1.0,color='k')
 
 main()
