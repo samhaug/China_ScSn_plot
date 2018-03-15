@@ -1,11 +1,11 @@
 # GMT 5 Session common arguments shelf
 BEGIN GMT 5.4.2
-B	a10
-J	m
+B	wNsE
+J	P
 Jm	m0.06i
 JP	P12
-R	70/180/-30/60
+R	50/130/3480/6371
 X	0.1
 Y	20
-L	2
+L	7
 END

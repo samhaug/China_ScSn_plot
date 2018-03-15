@@ -12,9 +12,9 @@ region=50/130/3480/6371
 #S plot
 #gmt psxy CE_grid.dat -R$region3 -J$scale -B0 -Wthinnest,black -K -O -P >> $file.ps
 #############################################################################
-gmt psxy $datadir/ScSScS0.dat -R$region -J$scale -Bxa180  \
+gmt psxy $datadir/ScSScS1.dat -R$region -J$scale -Bxa180  \
                            -BwNsE -Wthin,black -Y20 -X0.1 -K -P > $file.ps
-gmt psxy $datadir/ScSScS1.dat -R$region -J$scale \
+gmt psxy $datadir/ScSScS0.dat -R$region -J$scale \
                            -BwNsE -Wthin,#27A2B5 -K -O >> $file.ps
 
 gmt psxy $datadir/670.dat -R$region -J$scale \
