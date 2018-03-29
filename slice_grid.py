@@ -6,7 +6,7 @@
 File Name : slice_grid.py
 Purpose : plot a slice of a CRP grid between two coordinates
 Creation Date : 25-01-2018
-Last Modified : Wed 07 Mar 2018 03:58:46 PM EST
+Last Modified : Thu 29 Mar 2018 11:56:52 AM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -27,6 +27,8 @@ def main():
                         help='h5 grid CRP file')
     parser.add_argument('-c','--coords',metavar='float',type=float,nargs=4,
                         help='lat_1 lon1 lat_2 lon_2')
+    parser.add_argument('-s','--ScS2',action='store_true',
+                        help='only plot ScS2')
     args = parser.parse_args()
     lat_1 = args.coords[0]
     lon_1 = args.coords[1]
@@ -46,10 +48,15 @@ def main():
     longrid = np.transpose([np.ravel(longrid_one)])
     coords = np.hstack((longrid,latgrid,hgrid))
 
-    grid_count = g['grid_count'][:]
-    grid_count[grid_count == 0] = 1.
-    grid = g['grid'][:]
-    grid *= 1./grid_count
+    if args.ScS2:
+        grid_count = g['grid_count_ScS2'][:]
+        grid_count[grid_count == 0] = 1.
+        grid = g['grid_ScS2'][:]
+    else:
+        grid_count = g['grid_count'][:]
+        grid_count[grid_count == 0] = 1.
+        grid = g['grid'][:]
+    #grid *= 1./grid_count
     lat = g['lat'][:]
     lon = g['lon'][:]
     h = g['h'][:]
@@ -90,7 +97,7 @@ def main():
     for ii in range(cross_section.shape[1]):
         cross_section[:,ii] *= 1./np.max(np.abs(cross_section[:,ii]))
     ax0.imshow(cross_section,aspect='auto',extent=[0,200,800,50],alpha=1.7,
-               cmap='Spectral_r',interpolation='lanczos')
+               cmap='coolwarm',interpolation='lanczos')
     plot_wiggles(cross_section,hspace,ax0)
 
     plt.savefig('slice_grid.png')
