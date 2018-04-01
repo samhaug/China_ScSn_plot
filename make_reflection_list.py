@@ -6,7 +6,7 @@
 File Name : make_reflection_list.py
 Purpose : make ascii files of reflection points for psxy
 Creation Date : 19-02-2018
-Last Modified : Tue 20 Feb 2018 12:36:41 PM EST
+Last Modified : Sun 01 Apr 2018 03:14:05 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -17,13 +17,14 @@ from subprocess import call
 from os import listdir
 import argparse
 import h5py
+from glob import glob
 
 def main():
-    parser = argparse.ArgumentParser(description='make beachball list 4 psmeca')
+    parser = argparse.ArgumentParser(description='make list of reflection points')
     parser.add_argument('-d','--dir_list',metavar='string',type=str,
-                       help='comma delimited list of direcories')
+                       help='glob compatable list list of direcories')
     args = parser.parse_args()
-    dir_list = args.dir_list.split(',')
+    dir_list = glob(args.dir_list)
     ScS2 = file('ScS2.dat','w')
     ScS3 = file('ScS3.dat','w')
     sScS = file('sScS.dat','w')
@@ -31,7 +32,10 @@ def main():
     sScS3 = file('sScS3.dat','w')
     for d in dir_list:
         print d
-        phase_names,coord = reflection_points(d+'/3dreflection_points.h5')
+        try:
+            phase_names,coord = reflection_points(d+'/3dreflection_points.h5')
+        except KeyError:
+            continue
         for idx,ii in enumerate(phase_names):
             if ii == 'sScS':
                 sScS.write(str(coord[idx][1])+' '+str(coord[idx][0])+'\n')

@@ -6,7 +6,7 @@
 File Name : ttime_table.py
 Purpose : make traveltime plots
 Creation Date : 20-12-2017
-Last Modified : Thu 29 Mar 2018 02:07:13 PM EDT
+Last Modified : Thu 29 Mar 2018 02:31:49 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
