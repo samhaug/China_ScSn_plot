@@ -6,7 +6,7 @@
 File Name : plot_harmonics.py
 Purpose : plot spherical harmonics
 Creation Date : 17-02-2018
-Last Modified : Tue 27 Feb 2018 10:39:32 AM EST
+Last Modified : Tue 03 Apr 2018 12:33:05 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================

@@ -6,7 +6,7 @@
 File Name : ttime_table.py
 Purpose : make traveltime plots
 Creation Date : 20-12-2017
-Last Modified : Tue 03 Apr 2018 12:10:35 PM EDT
+Last Modified : Tue 03 Apr 2018 12:14:06 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -59,7 +59,7 @@ def plot_zeroth_order(phase,depth,distance,ax,name):
 def ttime_curves(conv_list,depth,distance):
     c_dict = OrderedDict([('ScSSvXS',[]),('sSvXSScS',[]),
               ('ScS^XScS',[]),('sScS^XScS',[]),
-              ('ScSSvXSScS',[]),
+              #('ScSSvXSScS',[]),
               ('ScSScSSvXS',[]),('sSvXSScSScS',[]),
               ('ScS^XScSScS',[]),('sScS^XScSScS',[]),
               ('ScSSvXSScSScS',[])])
@@ -67,7 +67,7 @@ def ttime_curves(conv_list,depth,distance):
         conv = str(dconv)
         c_list = ['ScSSv'+conv+'S','sSv'+conv+'SScS',
                   'ScS^'+conv+'ScS','sScS^'+conv+'ScS',
-                  'ScSSv'+conv+'SScS',
+                  #'ScSSv'+conv+'SScS',
                   'ScSScSSv'+conv+'S','sSv'+conv+'SScSScS',
                   'ScS^'+conv+'ScSScS','sScS^'+conv+'ScSScS',
                   'ScSSv'+conv+'SScSScS']
