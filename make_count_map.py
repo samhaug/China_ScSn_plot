@@ -6,7 +6,7 @@
 File Name : make_count_map.py
 Purpose : plot spherical harmonics
 Creation Date : 17-02-2018
-Last Modified : Tue 03 Apr 2018 01:09:46 PM EDT
+Last Modified : Tue 03 Apr 2018 01:38:11 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -27,18 +27,29 @@ def main():
     gc += -1*gc.min()
     gc += 0.001
     gc = np.log10(np.mean(gc,axis=2))
-    gc = np.flipud(np.transpose(gc))
-    lat = f['lat'][:]
-    lon = f['lon'][:]
-    x = np.linspace(lon.min(),lon.max(),num=gc.shape[0])
-    y = np.linspace(lat.min(),lat.max(),num=gc.shape[1])
-    plt.imshow(gc,aspect='auto',extent=[x.min(),x.max(),y.min(),y.max()])
+    print gc.shape
+    plt.imshow(gc,aspect='auto')
     plt.show()
-    xx,yy = np.meshgrid(x,y)
+    #gc = np.flipud(np.transpose(gc))
+    lon = f['lon'][:]
+    lat = f['lat'][:]
+    print lon.shape,lat.shape
+    xx,yy = np.meshgrid(lat,lon)
+    print 'lon'
+    print xx.shape
+    plt.imshow(xx)
+    plt.show()
+    print 'lat'
+    print yy.shape
+    plt.imshow(yy)
+    plt.show()
     gc = np.ravel(gc)
-    xx = np.transpose(np.ravel(xx))
-    yy = np.transpose(np.ravel(yy))
+    xx = np.ravel(xx)
+    yy = np.ravel(yy)
+    plt.scatter(xx,yy,c=gc,lw=0)
+    plt.show()
     np.savetxt('count_map.dat',np.c_[xx,yy,gc],fmt='%8.3f')
 
 main()
+
 
