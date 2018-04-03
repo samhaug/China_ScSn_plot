@@ -1,4 +1,4 @@
-#!/home/samhaug/anaconda2/bin/python
+jjj#!/home/samhaug/anaconda2/bin/python
 
 '''
 ==============================================================================
@@ -6,7 +6,7 @@
 File Name : make_count_map.py
 Purpose : plot spherical harmonics
 Creation Date : 17-02-2018
-Last Modified : Tue 03 Apr 2018 01:38:11 PM EDT
+Last Modified : Tue 03 Apr 2018 01:43:45 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -35,20 +35,12 @@ def main():
     lat = f['lat'][:]
     print lon.shape,lat.shape
     xx,yy = np.meshgrid(lat,lon)
-    print 'lon'
-    print xx.shape
-    plt.imshow(xx)
-    plt.show()
-    print 'lat'
-    print yy.shape
-    plt.imshow(yy)
-    plt.show()
     gc = np.ravel(gc)
     xx = np.ravel(xx)
     yy = np.ravel(yy)
     plt.scatter(xx,yy,c=gc,lw=0)
     plt.show()
-    np.savetxt('count_map.dat',np.c_[xx,yy,gc],fmt='%8.3f')
+    np.savetxt('count_map.dat',np.c_[yy,xx,gc],fmt='%8.3f')
 
 main()
 
