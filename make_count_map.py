@@ -6,7 +6,7 @@
 File Name : make_count_map.py
 Purpose : plot spherical harmonics
 Creation Date : 17-02-2018
-Last Modified : Tue 03 Apr 2018 01:04:42 PM EDT
+Last Modified : Tue 03 Apr 2018 01:09:46 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -27,13 +27,13 @@ def main():
     gc += -1*gc.min()
     gc += 0.001
     gc = np.log10(np.mean(gc,axis=2))
-    #gc = np.fliplr(np.transpose(gc))
+    gc = np.flipud(np.transpose(gc))
     lat = f['lat'][:]
     lon = f['lon'][:]
-    print len(lon),len(lat)
-    print gc.shape
     x = np.linspace(lon.min(),lon.max(),num=gc.shape[0])
     y = np.linspace(lat.min(),lat.max(),num=gc.shape[1])
+    plt.imshow(gc,aspect='auto',extent=[x.min(),x.max(),y.min(),y.max()])
+    plt.show()
     xx,yy = np.meshgrid(x,y)
     gc = np.ravel(gc)
     xx = np.transpose(np.ravel(xx))
