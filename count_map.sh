@@ -4,7 +4,7 @@ region=70/180/-30/60
 scale=m0.06i
 file=count_map
 
-makecpt -Chot -D0/5/0.01 -Z > cmap.cpt
+makecpt -Chot -D-3/3/0.01 -Z > cmap.cpt
 xyz2grd count_map.dat -R$region -Gtmp.grd -I0.5/0.5
 grdimage tmp.grd -R$region -J$scale -Ba10 -K -Ccmap.cpt > $file.ps
 pscoast -R$region -J$scale -W1,black -A1000 -K -O  >> $file.ps
