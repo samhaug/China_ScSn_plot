@@ -6,7 +6,7 @@
 File Name : make_count_map.py
 Purpose : plot spherical harmonics
 Creation Date : 17-02-2018
-Last Modified : Tue 03 Apr 2018 12:38:32 PM EDT
+Last Modified : Tue 03 Apr 2018 12:41:55 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -25,7 +25,8 @@ def main():
     f = h5py.File(args.file,'r')
     gc = f['grid_count'][:]
     gc += -1*gc.min()
-    gc = np.flipud(np.transpose(np.log10(np.mean(gc,axis=2))))
+    #gc = np.flipud(np.transpose(np.log10(np.mean(gc,axis=2))))
+    gc = np.log10(np.mean(gc,axis=2))
     lat = f['lat'][:]
     lon = f['lon'][:]
     xx,yy = np.meshgrid(lon,lat)
