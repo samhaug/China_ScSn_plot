@@ -6,7 +6,7 @@
 File Name : ttime_table.py
 Purpose : make traveltime plots
 Creation Date : 20-12-2017
-Last Modified : Thu 29 Mar 2018 02:31:49 PM EDT
+Last Modified : Tue 03 Apr 2018 10:20:59 AM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -42,6 +42,7 @@ def ttime_curves(depth,conv,ax):
     peg_dict = {'ScS':[],'ScSSv'+conv+'S':[]}
     top_dict = {'sScS':[],'sSv'+conv+'SScS':[]}
     bot_dict = {'ScSScS':[],'ScS^'+conv+'ScS':[]}
+    other_dict = {'sScS^'+conv+'ScS':[],'ScSSv'+conv+'SScS':[]}
     mod = TauPyModel(model='prem'+conv)
 
     for ii in np.linspace(0,50):
@@ -63,6 +64,13 @@ def ttime_curves(depth,conv,ax):
         bot_dict['ScSScS'].append(arr_bot[1].time)
         bot_dict['ScS^'+conv+'ScS'].append(arr_bot[0].time)
 
+        arr_other = mod.get_travel_times(source_depth_in_km=depth,
+                                   distance_in_degree=ii,
+                                   phase_list=['sScS^'+conv+'ScS',
+                                               'ScSSv'+conv+'SScS'])
+        other_dict['sScS^'+conv+'ScS'].append(arr_other[1].time)
+        other_dict['ScSSv'+conv+'SScS'].append(arr_other[0].time)
+
     for keys in peg_dict:
         ax.plot(np.linspace(0,50),np.array(peg_dict[keys]),lw=1.0,
                 label=keys,ls='-')
@@ -71,6 +79,9 @@ def ttime_curves(depth,conv,ax):
                 ls='-',color='k',alpha=0.5)
     for keys in bot_dict:
         ax.plot(np.linspace(0,50),np.array(bot_dict[keys]),lw=1.0,label=keys,
+                ls='-',color='k',alpha=0.5)
+    for keys in other_dict:
+        ax.plot(np.linspace(0,50),np.array(other_dict[keys]),lw=1.0,label=keys,
                 ls='-',color='k',alpha=0.5)
     ax.legend()
 
