@@ -6,7 +6,7 @@
 File Name : reverb_trace_illustrate.py
 Purpose : Make many illustrative figures of ScS reverb from synth trace
 Creation Date : 23-02-2018
-Last Modified : Tue 06 Mar 2018 08:00:34 PM EST
+Last Modified : Sun 29 Apr 2018 02:45:37 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -26,11 +26,19 @@ def main():
     fig,ax = setup_figure()
     syn_path='/home/samhaug/work1/China_ScSn_data/China_array/20120814/sts_T.h5'
     dat_path='/home/samhaug/work1/China_ScSn_data/China_array/20120814/st_T_clean.h5'
-    tr = return_trace(syn_path,dat_path,50)
+    trs,trd = return_trace(syn_path,dat_path,581)
 
-    t = np.linspace(tr.stats.o,tr.stats.npts/tr.stats.sampling_rate+tr.stats.o,num=tr.stats.npts)
-    ax.plot(t,tr.data,color='r',lw=0.8)
-    plt.savefig('reverb_trace_illustrate.png',dpi=300)
+    td = np.linspace(-1*trd.stats.o,trd.stats.npts/trd.stats.sampling_rate+-1*trd.stats.o,
+                     num=trd.stats.npts)
+    ts = np.linspace(0,trs.stats.npts/trs.stats.sampling_rate,num=trs.stats.npts)
+    print trs.stats.gcarc
+    print trd.stats.gcarc
+    ax.plot(ts,2.5*trs.data/np.abs(trs.data).max(),color='r',lw=0.8)
+    ax.plot(td,1+1.5*trd.data/np.abs(trd.data).max(),color='k',lw=0.8)
+    ax.text(1000,3,str(int(trs.stats.gcarc)))
+    ax.text(1000,3.5,str(int(trs.stats.evdp)))
+    plt.savefig('reverb_trace_illustrate.pdf')
+    plt.show()
 
 def return_ttime(tr,parent,child):
     parent_arr =  model.get_travel_times(source_depth_in_km=tr.stats.evdp,
@@ -46,7 +54,9 @@ def return_ttime(tr,parent,child):
 
 def return_trace(syn_path,dat_path,idx):
     sts = obspy.read(syn_path)
-    #std = obspy.read(dat_path)
+    std = obspy.read(dat_path)
+    sts.sort(['gcarc'])
+    std.sort(['gcarc'])
     #s = []
     #d = []
     #for tr in sts:
@@ -66,32 +76,30 @@ def return_trace(syn_path,dat_path,idx):
     #std.sort(['name'])
 
     trs = sts[idx]
-    #trd = std[idx]
-    #trd.filter('bandpass',freqmin=1./100,freqmax=1./10,zerophase=True)
+    trd = std[idx]
+    trd.filter('bandpass',freqmin=1./100,freqmax=1./10,zerophase=True)
     trs.filter('bandpass',freqmin=1./100,freqmax=1./10,zerophase=True)
     trs.normalize()
-    #trd.normalize()
-    trs.data *= 50
-    #trd.data *= 80
-    return trs
+    trd.normalize()
+    return trs,trd
 
 def setup_figure():
-    fig,ax = plt.subplots(figsize=(12,5))
-    #plt.tight_layout()
+    fig,ax = plt.subplots(figsize=(7.5,3))
+    plt.tight_layout()
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_visible(False)
     ax.yaxis.set_ticklabels([])
     ax.yaxis.set_ticks([])
-    ax.tick_params(axis='both', which='major', labelsize=10)
+    ax.tick_params(axis='both', which='major', labelsize=8)
     ax.xaxis.set_ticks_position('bottom')
-    ax.set_ylim(-5,5)
+    ax.set_ylim(-2,4)
     ax.set_xlim(800,3400)
     ax.xaxis.set_ticks(np.arange(800,3600,200))
     ax.spines['bottom'].set_bounds(800,3400)
     minorLocator = MultipleLocator(50)
     ax.xaxis.set_minor_locator(minorLocator)
-    ax.set_xlabel('Time (s)',size=16)
+    ax.set_xlabel('Time (s)',size=12)
     return fig,ax
 
 main()

@@ -6,7 +6,11 @@
 File Name : slice_grid.py
 Purpose : plot a slice of a CRP grid between two coordinates
 Creation Date : 25-01-2018
-Last Modified : Thu 17 May 2018 03:58:35 PM EDT
+<<<<<<< HEAD
+Last Modified : Thu 17 May 2018 05:45:01 PM EDT
+=======
+Last Modified : Thu 17 May 2018 04:03:56 PM EDT
+>>>>>>> cd5d229ead33328ef8d5b9fb9b4a90762978ab52
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -98,6 +102,8 @@ def main():
         cross_section[:,ii] *= 1./np.max(np.abs(cross_section[:,ii]))
     ax0.imshow(cross_section,aspect='auto',extent=[0,200,800,50],alpha=1.7,
                cmap='coolwarm',interpolation='lanczos')
+    ax0.axhline(400,c='green',lw=1.5,ls='--')
+    ax0.axhline(670,c='green',lw=1.5,ls='--')
     plot_wiggles(cross_section,hspace,ax0)
 
     plt.savefig('slice_grid.png')
