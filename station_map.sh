@@ -19,11 +19,15 @@ beach_file=datfiles/axisem3d_beachballs.dat
 pscoast -R$region -J$scale -Ba10 -Swhite -Glightgrey -K  > $file.ps
 gmt psxy $stations -R$region -J$scale -Si0.10c -Gblack -K -O >> $file.ps
 
+<<<<<<< HEAD
 while read lat lon H mrr mtt mpp mrt mrp mtp e lon lat; do
 psmeca -R$region -J$scale -Sm0.2i -K -O << END >> $file.ps
 $lon $lat $H $mrr $mtt $mpp $mrt $mrp $mrp $e $lon $lat
 END
 done < $beach_file
+=======
+gmt psxy jeannot_1.dat -R$region -J$scale -W2,red -K -O >> $file.ps
+>>>>>>> f0bd94416b95e1ef9726e40b4a5d2e98d6cbe64a
 
 ps2pdf $file.ps
 convert -density 150 $file.pdf -quality 90 $file.png
