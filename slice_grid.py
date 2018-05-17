@@ -6,7 +6,7 @@
 File Name : slice_grid.py
 Purpose : plot a slice of a CRP grid between two coordinates
 Creation Date : 25-01-2018
-Last Modified : Thu 17 May 2018 04:03:56 PM EDT
+Last Modified : Thu 17 May 2018 04:06:41 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
