@@ -6,7 +6,7 @@
 File Name : make_beachball_list.py
 Purpose : make file for gmt psmeca to read and plot beachballs on map
 Creation Date : 19-02-2018
-Last Modified : Mon 19 Feb 2018 05:03:52 PM EST
+Last Modified : Thu 17 May 2018 12:40:27 PM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -16,6 +16,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from subprocess import call
 from os import listdir
+from glob import glob
 import argparse
 
 def main():
@@ -25,10 +26,13 @@ def main():
     parser.add_argument('-f','--out_file',metavar='string',type=str,
                        help='output file name',default='beachballs.dat')
     args = parser.parse_args()
-    dir_list = args.dir_list.split(',')
+    #dir_list = args.dir_list.split(',')
+    dir_list = glob(args.dir_list)
+
     outfile = file(args.out_file,'w')
     for d in dir_list:
-        string = read_cmt(d+'/axisem_input_'+d+'/CMTSOLUTION')
+        #string = read_cmt(d+'/axisem_input_'+d+'/CMTSOLUTION')
+        string = read_cmt(d+'/input/CMTSOLUTION')
         outfile.write(string+'\n')
 
 def read_cmt(path_to_cmt):
