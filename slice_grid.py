@@ -37,6 +37,8 @@ def main():
                         help='lat_1 lon1 lat_2 lon_2')
     parser.add_argument('-s','--ScS2',action='store_true',
                         help='only plot ScS2')
+    parser.add_argument('-f','--file_name',type=str,default='slice_grid.pdf',
+                        help='file name')
     args = parser.parse_args()
     lat_1 = args.coords[0]
     lon_1 = args.coords[1]
@@ -110,7 +112,7 @@ def main():
     ax0.axhline(670,c='green',lw=1.5,ls='--')
     plot_wiggles(cross_section,hspace,ax0)
 
-    plt.savefig('slice_grid.png')
+    plt.savefig(args.file_name)
     plt.show()
 
 def setup_figure():
@@ -132,7 +134,7 @@ def setup_figure():
     ax1.spines['top'].set_visible(False)
     ax1.spines['right'].set_visible(False)
     ax1.grid()
-    plt.tight_layout()
+    #plt.tight_layout()
     return fig,ax0,ax1
 
 def plot_wiggles(cross_section,h,ax,color='k',alpha=0.4,zorder=0):
