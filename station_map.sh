@@ -7,6 +7,7 @@ scale=m0.06i
 file=station_map
 #stations=full_stations.dat
 stations=grid_stations.dat
+stations=datfiles/obspydmt_statcoords.dat
 beach_file=datfiles/axisem3d_beachballs.dat
 #gmtset FONT_LABEL=8
 #gmtset FONT_TITLE=8
@@ -16,7 +17,7 @@ beach_file=datfiles/axisem3d_beachballs.dat
 #plot events
 #psbasemap -R$region -J$scale -B10 -K -D$boxregion -F > $file.ps
 #pscoast -R$region -J$scale -B10 -S#27A2B5 -G#B53A27 -K  > $file.ps
-pscoast -R$region -J$scale -Ba10 -Swhite -Glightgrey -K  > $file.ps
+pscoast -R$region -J$scale -Ba10 -Swhite -Glightgrey -A10000 -K  > $file.ps
 gmt psxy $stations -R$region -J$scale -Si0.10c -Gblack -K -O >> $file.ps
 
 while read lat lon H mrr mtt mpp mrt mrp mtp e lon lat; do

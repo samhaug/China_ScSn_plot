@@ -108,8 +108,8 @@ def main():
         cross_section[:,ii] *= 1./np.max(np.abs(cross_section[:,ii]))
     ax0.imshow(cross_section,aspect='auto',extent=[0,200,800,50],alpha=1.7,
                cmap='coolwarm',interpolation='lanczos')
-    ax0.axhline(400,c='green',lw=1.5,ls='--')
-    ax0.axhline(670,c='green',lw=1.5,ls='--')
+    ax0.axhline(410,c='green',lw=1.5,ls='--')
+    ax0.axhline(660,c='green',lw=1.5,ls='--')
     plot_wiggles(cross_section,hspace,ax0)
 
     plt.savefig(args.file_name)

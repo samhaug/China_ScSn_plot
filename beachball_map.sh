@@ -13,7 +13,8 @@ beach_file=datfiles/beachballs.dat
 #plot events
 #psbasemap -R$region -J$scale -B10 -K -D$boxregion -F > $file.ps
 #pscoast -R$region -J$scale -B10 -Slightblue -Gwhite -K  > $file.ps
-pscoast -R$region -J$scale -B10 -S#27A2B5 -G#B53A27 -K  > $file.ps
+#pscoast -R$region -J$scale -B10 -S#27A2B5 -G#B53A27 -K  > $file.ps
+pscoast -R$region -J$scale -B10 -Swhite -A10000 -Glightgrey -K  > $file.ps
 #pscoast -R$region -J$scale -B10 -Swhite -Glightgrey -K  > $file.ps
 
 while read lat lon H mrr mtt mpp mrt mrp mtp e lon lat; do
@@ -26,4 +27,4 @@ done < $beach_file
 ps2pdf $file.ps
 rm $file.ps
 convert -density 150 $file.pdf -quality 90 $file.png
-display $file.png
+evince $file.pdf
