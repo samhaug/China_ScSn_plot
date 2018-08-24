@@ -48,8 +48,8 @@ def main():
 
     latspace = np.linspace(lat_1,lat_2,num=200)
     lonspace = np.linspace(lon_1,lon_2,num=200)
-    #hspace = g['h'][:]
-    hspace = np.arange(50,805,5)
+    hspace = g['h'][:]
+    #hspace = np.arange(50,805,5)
     hgrid_one,latgrid_one = np.meshgrid(hspace,latspace)
     hgrid_one,longrid_one = np.meshgrid(hspace,lonspace)
 
@@ -93,7 +93,7 @@ def main():
         print min(lon),max(lon)
         sys.exit()
 
-    fig,ax0,ax1 = setup_figure()
+    fig,ax0,ax1 = setup_figure(hspace)
     int3d = RegularGridInterpolator((lon,lat,h),grid)
     count_int3d = RegularGridInterpolator((lon,lat,h),grid_count)
     cross_section = int3d(coords)
@@ -106,7 +106,8 @@ def main():
 
     for ii in range(cross_section.shape[1]):
         cross_section[:,ii] *= 1./np.max(np.abs(cross_section[:,ii]))
-    ax0.imshow(cross_section,aspect='auto',extent=[0,200,800,50],alpha=1.7,
+    ax0.imshow(cross_section,aspect='auto',
+               extent=[0,200,hspace.max(),hspace.min()],alpha=1.7,
                cmap='coolwarm',interpolation='lanczos')
     ax0.axhline(410,c='green',lw=1.5,ls='--')
     ax0.axhline(660,c='green',lw=1.5,ls='--')
@@ -115,14 +116,14 @@ def main():
     plt.savefig(args.file_name)
     plt.show()
 
-def setup_figure():
+def setup_figure(hspace):
     #fig,ax = plt.subplots(2,1,figsize=(15,5))
     fig = plt.figure(figsize=(12,8))
     gs = gridspec.GridSpec(100,100)
     ax0 = plt.subplot(gs[0:80,:])
     ax1 = plt.subplot(gs[80::,:])
     ax1.set_xlim(0,200)
-    ax0.set_ylim(800,300)
+    ax0.set_ylim(hspace.max(),hspace.min())
     ax0.set_xlim(0,200)
 
     ax0.get_xaxis().set_ticks([])

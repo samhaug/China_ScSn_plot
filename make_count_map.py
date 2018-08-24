@@ -1,4 +1,4 @@
-jjj#!/home/samhaug/anaconda2/bin/python
+#!/home/samhaug/anaconda2/bin/python
 
 '''
 ==============================================================================
@@ -6,7 +6,7 @@ jjj#!/home/samhaug/anaconda2/bin/python
 File Name : make_count_map.py
 Purpose : plot spherical harmonics
 Creation Date : 17-02-2018
-Last Modified : Tue 03 Apr 2018 01:43:45 PM EDT
+Last Modified : Fri 24 Aug 2018 10:41:11 AM EDT
 Created By : Samuel M. Haugland
 
 ==============================================================================
@@ -24,9 +24,9 @@ def main():
     args = parser.parse_args()
     f = h5py.File(args.file,'r')
     gc = f['grid_count'][:]
-    gc += -1*gc.min()
-    gc += 0.001
-    gc = np.log10(np.mean(gc,axis=2))
+    #gc += -1*gc.min()
+    #gc += 0.001
+    gc = np.mean(gc,axis=2)
     print gc.shape
     plt.imshow(gc,aspect='auto')
     plt.show()
@@ -38,9 +38,9 @@ def main():
     gc = np.ravel(gc)
     xx = np.ravel(xx)
     yy = np.ravel(yy)
-    plt.scatter(xx,yy,c=gc,lw=0)
-    plt.show()
-    np.savetxt('count_map.dat',np.c_[yy,xx,gc],fmt='%8.3f')
+    #plt.scatter(xx,yy,c=gc,lw=0)
+    #plt.show()
+    np.savetxt('grid_count_map.dat',np.c_[yy,xx,gc],fmt='%8.3f')
 
 main()
 
